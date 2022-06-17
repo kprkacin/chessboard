@@ -6,13 +6,11 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import './App.css';
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { useGLTF } from "@react-three/drei";
-
+import {default as PawnModel}from './Pawn'
 
   function Model(props:any) {
   const group = useRef();
-  const test = useGLTF("Project Name.glb");
 
-    console.log("hi,",test);
   return (
     <group ref={group} {...props} dispose={null}>
      
@@ -40,7 +38,7 @@ import { useGLTF } from "@react-three/drei";
         scale={0}
       /> */
 
-useGLTF.preload("/Project Name.glb");
+//useGLTF.preload("/Project Name.glb");
 
 
 function BlackTile(props: JSX.IntrinsicElements['mesh']) {
@@ -244,8 +242,7 @@ function App() {
     <CameraController/>
           <ambientLight intensity={0.5} />
         <pointLight position={[-10, -10, -10]} />
-        {Model({})}      
-       
+        <PawnModel/>
       </Canvas>
     </div>
   )
