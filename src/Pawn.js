@@ -7,13 +7,15 @@ import { useGLTF } from '@react-three/drei'
 
 export default function Model({ ...props }) {
   const group = useRef()
-  const { nodes, materials } = useGLTF('/Pawn.gltf')
+  const { nodes, materials } = useGLTF('/Pawn.glb')
+  console.log(nodes,materials)
   return (
-    <group ref={group} {...props} dispose={null}>
-      <mesh geometry={nodes.Box_1.geometry} material={materials['Butterfly Wing']} rotation={[-Math.PI / 2, 0, 0]} scale={0} />
-      <mesh geometry={nodes.Box.geometry} material={materials['Diamond Dust']} position={[0, 0.06, 0]} rotation={[-Math.PI / 2, 0, 0]} scale={0} />
+    <group ref={group} {...props} dispose={null} >
+      <group scale={[0.02, 0.02, 0.02]}>
+      <mesh geometry={nodes.mesh_0.geometry} material={nodes.mesh_0.material}  />
+      </group>
     </group>
   )
 }
 
-useGLTF.preload('/Pawn.gltf')
+useGLTF.preload('/Pawn.glb')
