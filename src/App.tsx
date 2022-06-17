@@ -13,6 +13,9 @@ import {default as RookModel } from './Rook'
 import {default as BishopLModel } from './Bishop_L'
 
 import {default as BishopRModel } from './Bishop_R'
+import {default as KingModel } from './King'
+import {default as QueenModel } from './Queen'
+import {default as KnightModel } from './Knight'
 
 /*
  <mesh
@@ -161,17 +164,24 @@ function Pawn(props: JSX.IntrinsicElements['mesh']) {
   )
 }
 const resolveOtherPieces = (j:number,i:number,side:string)=>{
- const position:number[] = side == "black" ? [j-1.55 , i+0.2, -3.3]  :[j+1.55 , i-0.2, -3.3] 
  const rotation:number[] = side == "black" ? [0,0,0]  :  [0,0,Math.PI]
 
   switch (j){
     case 0:
     case 7:
-      console.log(position)
-      return <RookModel position = {position} rotation = {rotation}/>
+      return <RookModel position = { side == "black" ? [j-1.575 , i+0.25,-3.25]  :[j+1.575 , i-0.25,-3.25] } rotation = {rotation}/>
+    case 1:
+    case 6:
+      return <KnightModel position = { side == "black" ? [j-1.63 , i+0.3,-3]  :[j+1.63 , i-0.3,-3] } rotation = {rotation}/>
+
+      case 3:
+      return <QueenModel position = { side == "black" ? [j-1.9 , i+0.4,-2.5]  :[j+1.9 , i-0.4,-2.5] } rotation = {rotation}/>
+      case 4:
+        return <KingModel position = { side == "black" ? [j-1.175 , i+0.4,-2]  :[j+1.175 , i-0.4,-2] } rotation = {rotation}/>
+      
     case 2:
     case 5:
-      return <BishopRModel position = {position} rotation = {rotation}/>
+      return <BishopRModel position = { side == "black" ? [j-1.675 , i+0.2,-2.6]  :[j+1.675 , i-0.4,-2.6] } rotation = {rotation}/>
 
 
   }
