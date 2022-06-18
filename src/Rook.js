@@ -7,12 +7,14 @@ import { useGLTF } from '@react-three/drei'
 
 export default function Model({ ...props }) {
   const group = useRef()
-  const { nodes, materials } = useGLTF('/Rook.glb')
+  const { nodes, materials } = useGLTF('/Rook.glb') 
+   const material = nodes.mesh_0.material.clone();
+  material.color.setRGB(props.rgb.r,props.rgb.g,props.rgb.b)
   return (
     <group ref={group} {...props} dispose={null}>
             <group scale={[0.02, 0.02, 0.02]}>
 
-      <mesh geometry={nodes.mesh_0.geometry} material={nodes.mesh_0.material} />
+      <mesh geometry={nodes.mesh_0.geometry} material={material} />
       </group>
     </group>
   )
